@@ -4,6 +4,7 @@ from chatterbox.vc import ChatterboxVC
 
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+DEVICE = "mps" if torch.backends.mps.is_available() else "cpu"
 
 
 model = ChatterboxVC.from_pretrained(DEVICE)
