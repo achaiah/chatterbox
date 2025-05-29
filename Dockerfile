@@ -4,16 +4,21 @@ FROM python:3.11.9-slim
 # Set the working directory in the container
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 wget && rm -rf /var/lib/apt/lists/*
+
 # Copy all necessary files first
 COPY pyproject.toml ./
 COPY README.md ./
 COPY LICENSE ./
 COPY src/ ./src/
-COPY gradio_tts_app.py .
+# COPY gradio_tts_app.py .
 
 # Install project dependencies
 # This will look for pyproject.toml and install dependencies defined there
 RUN pip install --no-cache-dir .
+RUN pip install gradio
+
+COPY gradio_tts_app.py .
 
 # Expose port 5523
 EXPOSE 5523

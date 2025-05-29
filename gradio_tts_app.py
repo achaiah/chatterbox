@@ -5,8 +5,8 @@ import gradio as gr
 from chatterbox.tts import ChatterboxTTS
 
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-
+# DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+DEVICE = "cpu"
 
 def set_seed(seed: int):
     torch.manual_seed(seed)
@@ -77,4 +77,4 @@ if __name__ == "__main__":
     demo.queue(
         max_size=50,
         default_concurrency_limit=1,
-    ).launch(server_port=5523, share=True)
+    ).launch(server_port=5523, share=False, server_name="0.0.0.0")
