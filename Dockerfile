@@ -18,10 +18,11 @@ COPY src/ ./src/
 RUN pip install --no-cache-dir .
 RUN pip install gradio
 
-COPY gradio_tts_app.py .
+COPY *.py .
 
 # Expose port 5523
 EXPOSE 5523
 
 # Command to run the application
 CMD ["python", "gradio_tts_app.py"]
+# CMD ["python", "gradio_vc_app.py"]
